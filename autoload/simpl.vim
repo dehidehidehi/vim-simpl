@@ -36,6 +36,14 @@ function simpl#popup_repl(...) abort
   return s:popup(call('simpl#repl', ['++close'] + a:000))
 endfunction
 
+function simpl#popup_load(...) abort
+  let l:file = expand('%')
+	let l:code = s:simpl()[&filetype]['buildloadexpr'](l:file)
+	let l:term_id = call(function("simpl#repl"), ['++close'] + a:000)
+  call term_sendkeys(win_id2win(l:term_id)->winbufnr(), l:code)
+  return s:popup(l:term_id)
+endfunction
+
 function simpl#popup_shell(...) abort
   return s:popup(call('simpl#shell', ['++close'] + a:000))
 endfunction
