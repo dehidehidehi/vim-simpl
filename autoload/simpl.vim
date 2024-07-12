@@ -29,7 +29,7 @@ function s:popup(id) abort
   const buf = win_id2win(a:id)->winbufnr()
   call win_gotoid(a:id)
   hide
-  return popup_create(buf, #{minheight: &lines-10, minwidth: &columns-10, border:[], padding: []})
+  return popup_create(buf, s:popup_conf())
 endfunction
 
 function simpl#popup_repl(...) abort
@@ -96,4 +96,8 @@ endfunction
 
 function s:mods() abort
   return get(b:, 'simpl_mods', get(g:, 'simpl_mods', ''))
+endfunction
+
+function s:popup_conf() abort
+	return get(b:, 'simpl_popup_conf', #{minheight: &lines-10, minwidth: &columns-10, border:[], padding: []})
 endfunction
