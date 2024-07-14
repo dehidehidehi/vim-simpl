@@ -33,7 +33,7 @@ function s:popup(win_id, ...) abort
   return popup_create(buf, l:options)
 endfunction
 
-function s:popup_conf() abort
+function s:popup_options() abort
 	return get(b:, "simpl_popup_options", #{minheight: &lines-10, minwidth: &columns-10, border:[], padding: []})
 endfunction
 
@@ -46,7 +46,7 @@ function simpl#popup_load(...) abort
 	let l:code = s:simpl()[&filetype]['buildloadexpr'](l:file)
 	let l:term_win_id = call("simpl#repl", ['++close'] + a:000)
   call term_sendkeys(win_id2win(l:term_win_id)->winbufnr(), l:code)
-  let l:popup = s:popup(l:term_win_id, s:popup_conf())
+  let l:popup = s:popup(l:term_win_id, s:popup_options())
 	" The pop-up does not seem to delete closed terminal buffers.
 	" This in turn would break calls to simpl#load();
 	" it would try to load code in an inactive terminal buffer.
