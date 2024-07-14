@@ -34,15 +34,7 @@ function s:popup(win_id, ...) abort
 endfunction
 
 function s:popup_conf(term_bufnr) abort
-	function! s:kill_term(popup_id, result) closure abort
-		for i in range(5)
-				call term_sendkeys(a:term_bufnr, "\<C-d>")
-		endfor
-		execute "bwipeout " . a:term_bufnr
-	endfunction
-	let l:conf = get(b:, "simple_popup_conf", #{minheight: &lines-10, minwidth: &columns-10, border:[], padding: []})
-	let l:conf.callback = 's:kill_term'
-  return l:conf
+	return get(b:, "simple_popup_conf", #{minheight: &lines-10, minwidth: &columns-10, border:[], padding: []})
 endfunction
 
 function simpl#popup_repl(...) abort
