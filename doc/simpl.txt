@@ -141,6 +141,13 @@ If truthy, simpl will not register its default filetype information. Note
 however that, when calling |simpl#register| with the same filetype, the
 last call will override all others.
 
+                                                         *b:simpl_popup_conf*
+Dictionary, see *popup_create-arguments* {options}. If you wish to override
+the default popup arguments, you may `let b:simpl_popup_conf`  
+The default settings are:  
+`#{minheight: &lines-10, minwidth: &columns-10, border:[], padding: []}`
+
+
 ==============================================================================
 LICENSE                                                        *simpl-license*
 

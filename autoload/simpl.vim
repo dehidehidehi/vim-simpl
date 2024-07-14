@@ -34,7 +34,7 @@ function s:popup(win_id, ...) abort
 endfunction
 
 function s:popup_conf() abort
-	return get(b:, "simple_popup_conf", #{minheight: &lines-10, minwidth: &columns-10, border:[], padding: []})
+	return get(b:, "simpl_popup_options", #{minheight: &lines-10, minwidth: &columns-10, border:[], padding: []})
 endfunction
 
 function simpl#popup_repl(...) abort
